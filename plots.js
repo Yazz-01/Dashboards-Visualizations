@@ -1,5 +1,6 @@
 // Reading the json file with d3
-d3.json("data/samples.json").then((bellyData) => {
+
+d3.json("../data/samples.json").then((bellyData) => {
     window.bellyData = bellyData;
     console.log(bellyData);
     var data = bellyData;
@@ -8,7 +9,7 @@ d3.json("data/samples.json").then((bellyData) => {
     var idList = data.names;
     for (i = 0; i < idList.length; i++) {
         selectBox = d3.select("#selDataset");
-        selectBox = append("option").text(idList[i]);
+        selectBox.append("option").text(idList[i]);
     }
 
     // Set up default plot
@@ -43,7 +44,7 @@ d3.json("data/samples.json").then((bellyData) => {
         var topTenOTUs = sampleSubjectOTUs.slice(0, 10).reverse();
         var topTenFreq = sampleSubjectFreq.slice(0, 10).reverse();
         var topTenToolTips = data.samples[0].otu_labels.slice(0, 10).reverse();
-        var topTenLabels = topTenOTUs.map(otu => "OTU" + otu);
+        var topTenLabels = topTenOTUs.map((otu => "OTU" + otu));
         var reversedLabels = topTenLabels.reverse();
 
 
@@ -52,7 +53,10 @@ d3.json("data/samples.json").then((bellyData) => {
             type: 'bar',
             x: topTenFreq,
             y: reversedLabels,
-            orientation: 'h'
+            name: "",
+            orientation: 'h',
+            text: topTenToolTips
+
         };
 
 
@@ -61,7 +65,7 @@ d3.json("data/samples.json").then((bellyData) => {
 
         // Apply Layout
         var layout = {
-            title: "Top Ten OTUs"
+            title: "Top Ten OTUs",
             margin: {
                 l: 75,
                 r: 75,
@@ -73,7 +77,7 @@ d3.json("data/samples.json").then((bellyData) => {
         Plotly.newPlot("bar", barData, layout);
 
         //Set up trace 2
-        var trace2 = {
+        trace2 = {
                 x: sampleSubjectOTUs,
                 y: sampleSubjectFreq,
                 text: otuLabels,
@@ -101,58 +105,62 @@ d3.json("data/samples.json").then((bellyData) => {
         //Gauge chart
 
         var trace3 = [{
-                domain: { x: [0, 1], y: [0, 1] },
-                type: "indicator",
-                mode: "gauge+number",
-                value: washFrequency,
-                title: { text: "BellyButton Washes Per Week" },
-                gauge: {
-                    axis: { range: [0, 9], tickwidth: 0.5, tickcolor: "black" },
-                    bar: { color: "#669999" },
-                    bgcolor: "white",
-                    borderwidth: 2,
-                    bordercolor: "transparent",
-                    steps: [
-                        { range: [0, 1], color, "#fff" },
-                        { range: [1, 2], color, "#33ffad" },
-                        { range: [2, 3], color, "#4dffb8" },
-                        { range: [3, 4], color, "#66ffc2" },
-                        { range: [4, 5], color, "#99ffd6" },
-                        { range: [5, 6], color, "#80ffcc" },
-                        { range: [6, 7], color, "b3ffe0" },
-                        { range: [7, 8], color, "ccffeb" },
-                        { range: [8, 9], color, "#e6fff5" }
-                    ],
+            domain: { x: [0, 1], y: [0, 1] },
+            type: "indicator",
+            mode: "gauge+number",
+            value: washFrequency,
+            title: { text: "BellyButton Washes Per Week" },
+            gauge: {
+                axis: { range: [0, 9], tickwidth: 0.5, tickcolor: "black" },
+                bar: { color: "#669999" },
+                bgcolor: "white",
+                borderwidth: 2,
+                bordercolor: "transparent",
+                steps: [
+                    { range: [0, 1], color: "#fff" },
+                    { range: [1, 2], color: "#33ffad" },
+                    { range: [2, 3], color: "#4dffb8" },
+                    { range: [3, 4], color: "#66ffc2" },
+                    { range: [4, 5], color: "#99ffd6" },
+                    { range: [5, 6], color: "#80ffcc" },
+                    { range: [6, 7], color: "b3ffe0" },
+                    { range: [7, 8], color: "ccffeb" },
+                    { range: [8, 9], color: "#e6fff5" }
+                ],
+                threshold: {
+                    line: { color: "purple", width: 7 },
+                    thickness: .75,
+                    value: washFrequency
                 }
             }
         }];
 
-    gaugeData = trace3;
+        gaugeData = trace3;
 
-    var layout = {
-        width: 600,
-        height: 500,
-        margin: { t: 0, b: 0 }
-    };
-    Plotly.newPlot("gauge", gaugeData, layout);
+        var layout = {
+            width: 600,
+            height: 500,
+            margin: { t: 0, b: 0 }
+        };
+        Plotly.newPlot("gauge", gaugeData, layout);
 
-}
-// On button click, call refreshData()
-d3.SelectAll("#selDataset").on("change", refreshData);
+    }
+    // On button click, call refreshData()
+    d3.selectAll("#selDataset").on("change", refreshData);
 
-function refreshData() {
-    var dropDownMenu = d3.select("#selDataset");
-    // Assign the value of the DropDown menu option to a variable
-    var peopleID = dropDownMenu.property("value");
-    console.log(peopleID);
-    // Initialize an empty array for the people´s Data
-    console.log(data);
+    function refreshData() {
+        var dropDownMenu = d3.select("#selDataset");
+        // Assign the value of the DropDown menu option to a variable
+        var peopleID = dropDownMenu.property("value");
+        console.log(peopleID);
+        // Initialize an empty array for the people´s Data
+        console.log(data);
 
-    for (var i = 0; i < data.names.length; i++) {
-        if (peopleID === data.names[i]) {
-            updatePlots(i);
-            return
+        for (var i = 0; i < data.names.length; i++) {
+            if (peopleID === data.names[i]) {
+                updatePlots(i);
+                return
+            }
         }
     }
-}
 });
