@@ -102,7 +102,7 @@ d3.json("../data/samples.json").then((bellyData) => {
         Plotly.newPlot("bubble", bubbleData, layout)
 
 
-        //Gauge chart
+        //----------------------Gauge chart------------ //
 
         var trace3 = [{
             domain: { x: [0, 1], y: [0, 1] },
