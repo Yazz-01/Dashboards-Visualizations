@@ -1,6 +1,6 @@
 // Reading the json file with d3
 
-d3.json("data/samples.json").then((bellyData) => {
+d3.json("samples.json").then((bellyData) => {
     window.bellyData = bellyData;
     console.log(bellyData);
     var data = bellyData;
