@@ -27,7 +27,7 @@ Therefore, the following variables were performed:
 * `otu_labels` as the hovertext for the chart.
 
 
-3. Creating a Bubble chart that displays each sample.
+3. Creating a Bubble chart that displays each sample:
 
 * `otu_ids` for the x values.
 
