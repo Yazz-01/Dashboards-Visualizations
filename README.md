@@ -2,7 +2,7 @@
 
 ![Image first page](https://github.com/Yazz-01/Dashboards-Visualizations/blob/main/Images/bancteria_port.png)
 
-* * Belly Button Biodiversity
+* * Belly Button Biodiversity:
 
 This is an interactive dashboard to explore the [Belly Button Biodiversity dataset](https://github.com/Yazz-01/Dashboards-Visualizations/blob/main/samples.json), which catalogs the microbes that colonize human navels.
 
