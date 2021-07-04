@@ -2,7 +2,7 @@
 
 ![Image first page](https://github.com/Yazz-01/Dashboards-Visualizations/blob/main/Images/bancteria_port.png)
 
-* * Belly Button Biodiversity
+* * Belly Button Biodiversity:
 
 This is an interactive dashboard to explore the [Belly Button Biodiversity dataset](https://github.com/Yazz-01/Dashboards-Visualizations/blob/main/samples.json), which catalogs the microbes that colonize human navels.
 
@@ -27,7 +27,7 @@ Therefore, the following variables were performed:
 * `otu_labels` as the hovertext for the chart.
 
 
-3. Creating a Bubble chart that displays each sample.
+3. Creating a Bubble chart that displays each sample:
 
 * `otu_ids` for the x values.
 
@@ -40,5 +40,5 @@ Therefore, the following variables were performed:
 * `otu_labels` for the text values.
 
 
-![dashboard_image](dashboard.png)
+![dashboard_image](https://github.com/Yazz-01/Dashboards-Visualizations/blob/main/Images/dash2.png)
 
