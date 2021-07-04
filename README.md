@@ -40,5 +40,5 @@ Therefore, the following variables were performed:
 * `otu_labels` for the text values.
 
 
-![dashboard_image](dashboard.png)
+![dashboard_image](https://github.com/Yazz-01/Dashboards-Visualizations/blob/main/Images/dash2.png)
 
