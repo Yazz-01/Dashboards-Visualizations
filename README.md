@@ -1,6 +1,6 @@
 # Plot.ly - Interactive Dashboards 
 
-[Image port](Images/bacteria_port.png)
+![Image first page](Images/bacteria_port.png)
 
 * * Belly Button Biodiversity
 
